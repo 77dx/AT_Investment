@@ -1,0 +1,50 @@
+api:
+  base_url: 'http://172.16.163.52:8090/report/judgeCollision'
+  headers: {"Content-Type":"application/json","Authorization":"Bearer fb34b5fbaf1aaebea3e3f338addfea29"}
+
+company:
+  check_pending_company: '撞客自动化测试待审核科技有限公司'
+  not_receive_company: '撞客自动化测试未接待科技有限公司'
+  been_received_company: '撞客自动化测试已接待科技有限公司'
+  signed_contract: '撞客自动化测试已签约科技有限公司'
+  invalid_company: '撞客自动化测试无效科技有限公司'
+
+report:
+  filename: "招商撞客自动化测试"
+  verbosity: 1
+  title: 招商撞客自动化测试报告
+  description: 招商撞客自动化测试
+  tester: 陈厦林
+
+mysql:
+  host: "172.16.163.52"
+  user: "root"
+  password: "byph.123"
+  db: "wzwl_investment"
+  port: 3306
+  select_clue_sql: "SELECT company,clues_status FROM wzwl_investment WHERE company=%s;"
+  delete_clue_sql: "DELETE FROM wzwl_investment.`clue` WHERE company IN('%s') AND clues_type=0;"
+  update_clue_sql: "UPDATE wzwl_investment.`clue` SET clues_status='%s' WHERE company='%s' AND clues_type=0;"
+  # 查询数据库已接待公司名字
+  select_received_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试科技有限公司';"
+  # 查询数据库该公司是否存在待审核数据
+  select_check_pending_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试待审核科技有限公司';"
+  # 删除数据库该公司存在待审核数据
+  delete_check_pending_company_sql: "delete from wzwl_investment.`clue` WHERE company='撞客自动化测试待审核科技有限公司';"
+  # 查询数据库该公司是否存在未接待数据
+  select_not_receive_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试未接待科技有限公司';"
+  # 删除数据库该公司存在未接待数据
+  delete_not_receive_company_sql: "delete from wzwl_investment.`clue` WHERE company='撞客自动化测试未接待科技有限公司';"
+  # 查询数据库该公司是否存在已接待数据
+  select_been_received_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试已接待科技有限公司';"
+  # 删除数据库该公司是否存在已接待数据
+  delete_been_received_company_sql: "delete from wzwl_investment.`clue` WHERE company='撞客自动化测试已接待科技有限公司';"
+  # 查询数据库该公司是否存在已签约数据
+  select_signed_contract_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试已签约科技有限公司';"
+  # 删除数据库该公司是否存在已签约数据
+  delete_signed_contract_company_sql: "delete from wzwl_investment.`clue` WHERE company='撞客自动化测试已签约科技有限公司';"
+  # 查询数据库该公司是否存在无效数据
+  select_invalid_company_sql: "SELECT company,clues_status FROM wzwl_investment.`clue` WHERE company='撞客自动化测试无效科技有限公司';"
+  # 删除数据库该公司是否存在无效数据
+  delete_invalid_company_sql: "delete from wzwl_investment.`clue` WHERE company='撞客自动化测试无效科技有限公司';"
+
